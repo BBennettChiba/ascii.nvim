@@ -3,8 +3,8 @@ local anime = require("ascii.anime")
 local text = require("ascii.text")
 local misc = require("ascii.misc")
 local gaming = require("ascii.gaming")
-local planets = require("ascii.planets")
 local movies = require("ascii.movies")
+local holidays = require("ascii.holidays")
 
 local M = {
 	animals = animals,
@@ -12,8 +12,8 @@ local M = {
 	text = text,
 	misc = misc,
 	gaming = gaming,
-	planets = planets,
 	movies = movies,
+	holidays = holidays,
 }
 
 return M
