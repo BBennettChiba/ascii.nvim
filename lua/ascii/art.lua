@@ -9,11 +9,11 @@ local holidays = require("ascii.holidays")
 local M = {
 	animals = animals,
 	anime = anime,
-	text = text,
-	misc = misc,
 	gaming = gaming,
-	movies = movies,
 	holidays = holidays,
+	misc = misc,
+	movies = movies,
+	text = text,
 }
 
 return M

@@ -3,6 +3,10 @@ local ui = require("ascii.ui")
 
 local art = require("ascii.art")
 
+local M = {
+	art = art,
+}
+
 local function has_value(tab, val)
 	for _, value in ipairs(tab) do
 		if value == val then
@@ -11,10 +15,6 @@ local function has_value(tab, val)
 	end
 	return false
 end
-
-local M = {
-	art = art,
-}
 
 -- shallow print of key names
 M.print_category = function()
@@ -59,7 +59,7 @@ end
 
 M.get_random_global = function(omitted_categories)
 	local category = utils.get_random_key(M.art)
-	if category == has_value(omitted_categories, category) then
+	if omitted_categories and category == has_value(omitted_categories, category) then
 		return M.get_random(omitted_categories)
 	end
 	local subcategories = M.art[category]
