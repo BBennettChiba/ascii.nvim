@@ -71,6 +71,7 @@ end
 M.get_holiday_random = function()
 	local holiday
 	local time = os.date()
+	print(time.month)
 	if time.month == 5 then
 		holiday = "easter"
 	elseif time.month == 10 then
