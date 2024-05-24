@@ -70,7 +70,7 @@ end
 
 M.get_holiday_random = function()
 	local holiday
-	local time = os.date()
+	local time = os.date("*t")
 	print(time.month)
 	if time.month == 5 then
 		holiday = "easter"
