@@ -3,8 +3,17 @@ local ui = require("ascii.ui")
 
 local art = require("ascii.art")
 
+local function has_value(tab, val)
+	for _, value in ipairs(tab) do
+		if value == val then
+			return true
+		end
+	end
+	return false
+end
+
 local M = {
-	art = art
+	art = art,
 }
 
 -- shallow print of key names
@@ -32,7 +41,6 @@ M.preview = function()
 	ui.open()
 end
 
-
 M.get_random = function(category, subcategory)
 	local pieces = M.art[category][subcategory]
 
@@ -49,11 +57,30 @@ M.get_random = function(category, subcategory)
 	return piece
 end
 
-M.get_random_global = function()
-	local category = utils.get_random_key(M.art);
+M.get_random_global = function(omitted_categories)
+	local category = utils.get_random_key(M.art)
+	if category == has_value(omitted_categories, category) then
+		return M.get_random(omitted_categories)
+	end
 	local subcategories = M.art[category]
 	local subcategory_key = utils.get_random_key(subcategories)
 	local piece = M.get_random(category, subcategory_key)
+	return piece
+end
+
+M.get_holiday_random = function()
+	local holiday
+	local time = os.date()
+	if time.month == 4 then
+		holiday = "easter"
+	elseif time.month == 10 then
+		holiday = "halloween"
+	elseif time.month == 11 or time.month == 12 then
+		holiday = "christmas"
+	else
+		return M.get_random_global({ "easter", "halloween", "christmas" })
+	end
+	local piece = M.get_random("holidays", holiday)
 	return piece
 end
 
