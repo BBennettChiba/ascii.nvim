@@ -60,7 +60,7 @@ end
 M.get_random_global = function(omitted_categories)
 	local category = utils.get_random_key(M.art)
 	if omitted_categories and has_value(omitted_categories, category) then
-		return M.get_random(omitted_categories)
+		return M.get_random_global(omitted_categories)
 	end
 	local subcategories = M.art[category]
 	local subcategory_key = utils.get_random_key(subcategories)
